@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.uet.anhdt.soccerschedule.activities.MainActivity"
+    android:background="@mipmap/main_background">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayoutMainTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        android:background="@android:color/transparent"
+        app:tabSelectedTextColor="@color/colorMainTabSelected"
+        app:tabTextColor="@color/colorMainTabUnselected"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:tabIndicatorColor="@android:color/white"
+        android:layout_marginLeft="@dimen/main_tablayout_margin"
+        android:layout_marginRight="@dimen/main_tablayout_margin"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerMainTask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayoutMainTask"/>
+
+</RelativeLayout>
