@@ -5,7 +5,20 @@
 
     <dimen name="item_fixture_margin">10dp</dimen>
     <dimen name="item_logo_size">70dp</dimen>
-    <dimen name="item_team_name_size">17sp</dimen>
-    <dimen name="item_date_size">17sp</dimen>
-    <dimen name="item_time_size">25sp</dimen>
+    <dimen name="item_team_name_size">18sp</dimen>
+    <dimen name="item_date_size">15sp</dimen>
+    <dimen name="item_time_size">20sp</dimen>
+
+    <dimen name="item_competition_margin">10dp</dimen>
+    <dimen name="item_competition_margin_bottom">5dp</dimen>
+    <dimen name="item_competition_ball_padding">5dp</dimen>
+    <dimen name="item_competition_name_size">20sp</dimen>
+    <dimen name="item_competition_name_margin_left">20dp</dimen>
+    <dimen name="item_competition_name_margin_right">20dp</dimen>
+
+    <dimen name="fragment_competition_margin_vertical">10dp</dimen>
+    <dimen name="fragment_news_margin_vertical">10dp</dimen>
+
+    <dimen name="item_group_match_margin_left">20dp</dimen>
+    <dimen name="item_group_match_margin_right">20dp</dimen>
 </resources>

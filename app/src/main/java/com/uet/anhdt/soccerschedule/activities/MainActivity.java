@@ -50,8 +50,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void handleTabLayout() {
-        setupViewPager();
+
         tabLayoutMainTask.setupWithViewPager(viewPagerMainTask);
+        setupViewPager();
         animateForTabSelected(tabLayoutMainTask.getSelectedTabPosition());
         tabLayoutMainTask.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

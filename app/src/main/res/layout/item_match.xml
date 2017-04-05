@@ -2,70 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#403F51B5"
+    android:weightSum="8"
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/item_fixture_margin">
+        android:background="#CC009688"
+        android:layout_marginStart="@dimen/item_fixture_margin"
+        android:layout_marginEnd="@dimen/item_fixture_margin"
+        android:orientation="horizontal"
+        android:weightSum="8"
+        >
 
         <RelativeLayout
             android:id="@+id/relativeItemHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:layout_margin="10dp">
 
-            <ImageView
-                android:id="@+id/imageViewItemHomeLogo"
-                android:layout_width="@dimen/item_logo_size"
-                android:layout_height="@dimen/item_logo_size"
-                android:src="@mipmap/ic_launcher"
-                android:layout_centerHorizontal="true"
-                />
 
             <TextView
                 android:id="@+id/tvItemHomeName"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CHE"
+                android:text="Manchester United"
                 android:textSize="@dimen/item_team_name_size"
                 android:textColor="@android:color/white"
-                android:layout_below="@+id/imageViewItemHomeLogo"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeItemAway"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true">
-
-            <ImageView
-                android:id="@+id/imageViewItemHomeAway"
-                android:layout_width="@dimen/item_logo_size"
-                android:layout_height="@dimen/item_logo_size"
-                android:src="@mipmap/ic_launcher"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:singleLine="true"
                 />
-
-            <TextView
-                android:id="@+id/tvItemHomeAway"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MAN"
-                android:textSize="@dimen/item_team_name_size"
-                android:textColor="@android:color/white"
-                android:layout_below="@+id/imageViewItemHomeAway"/>
         </RelativeLayout>
+
 
         <RelativeLayout
             android:id="@+id/relativeItemTime"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/relativeItemHome"
-            android:layout_toStartOf="@+id/relativeItemAway"
-            android:layout_centerInParent="true">
+            android:layout_weight="2"
+            android:layout_margin="10dp"
+            >
 
             <TextView
                 android:id="@+id/tvItemDate"
@@ -87,7 +65,30 @@
                 android:layout_below="@+id/tvItemDate"/>
         </RelativeLayout>
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeItemAway"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:layout_margin="10dp"
+            >
+
+            <TextView
+                android:id="@+id/tvItemHomeAway"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manchester United"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/item_team_name_size"
+                android:textColor="@android:color/white"
+                android:singleLine="true"
+                />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

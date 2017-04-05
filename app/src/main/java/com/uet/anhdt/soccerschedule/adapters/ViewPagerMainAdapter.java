@@ -15,9 +15,8 @@ import com.uet.anhdt.soccerschedule.utils.Constant;
 
 public class ViewPagerMainAdapter extends FragmentStatePagerAdapter {
 
-    private NewsMainFragment newsMainFragment;
-    private FavoriteTeamFragment favoriteTeamFragment;
-    private CompetitionListFragment competitionListFragment;
+    private NewsMainFragment newsMainFragment = NewsMainFragment.newInstance();
+    private CompetitionListFragment competitionListFragment = CompetitionListFragment.newInstance();
 
     public ViewPagerMainAdapter(FragmentManager fm) {
         super(fm);
@@ -27,18 +26,16 @@ public class ViewPagerMainAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new NewsMainFragment();
+                return newsMainFragment;
             case 1:
-                return new NewsMainFragment();
-            case 2:
-                return new NewsMainFragment();
+                return competitionListFragment;
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -47,8 +44,6 @@ public class ViewPagerMainAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return Constant.NEWS_MAIN;
             case 1:
-                return Constant.FAVORITE_MAIN;
-            case 2:
                 return Constant.COMPETITION_MAIN;
         }
         return null;

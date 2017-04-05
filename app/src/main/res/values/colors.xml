@@ -7,4 +7,7 @@
     <color name="colorMainTabUnselected">#80E0E0E0</color>
     <color name="colorMainTabSelected">#FFFFFF</color>
     <color name="colorItemDate">#B3FFFFFF</color>
+
+    <color name="colorItemCompetitionBackground">#802196F3</color>
+    <color name="colorItemCompetitionBallBackground">#039be5</color>
 </resources>

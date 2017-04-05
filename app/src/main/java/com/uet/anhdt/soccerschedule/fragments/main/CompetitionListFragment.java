@@ -1,56 +1,67 @@
 package com.uet.anhdt.soccerschedule.fragments.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.uet.anhdt.soccerschedule.R;
+import com.uet.anhdt.soccerschedule.adapters.CompetitionListAdapter;
+import com.uet.anhdt.soccerschedule.fragments.BaseFragment;
+import com.uet.anhdt.soccerschedule.models.competition.CompetitionInfomation;
+import com.uet.anhdt.soccerschedule.services.CompetitionListAPI;
+import com.uet.anhdt.soccerschedule.services.InitService;
+import com.uet.anhdt.soccerschedule.utils.Constant;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
-public class CompetitionListFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class CompetitionListFragment extends BaseFragment {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private RecyclerView recyclerViewCompetitionList;
+    private ArrayList<CompetitionInfomation> competitionInfomationArrayList;
+    private CompetitionListAdapter competitionListAdapter;
+    private Activity activityContainsFragment;
 
     public CompetitionListFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CompetitionListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CompetitionListFragment newInstance(String param1, String param2) {
+    public static CompetitionListFragment newInstance() {
         CompetitionListFragment fragment = new CompetitionListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.activityContainsFragment = (Activity) context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        competitionInfomationArrayList = new ArrayList<>();
+        competitionListAdapter = new CompetitionListAdapter(activityContainsFragment, competitionInfomationArrayList);
+
+        getCompetitions();
+        Log("onCreate");
     }
 
     @Override
@@ -60,4 +71,52 @@ public class CompetitionListFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_competition_list, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initUI(view);
+    }
+
+    private void initUI(View view) {
+        initRecyclerView(view);
+    }
+
+    private void initRecyclerView(View view) {
+        recyclerViewCompetitionList = (RecyclerView) view.findViewById(R.id.recyclerViewCompetitionList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activityContainsFragment);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerViewCompetitionList.setLayoutManager(linearLayoutManager);
+        recyclerViewCompetitionList.setAdapter(competitionListAdapter);
+    }
+
+    private void getCompetitions() {
+        CompetitionListAPI competitionListAPI = InitService.getInstance().createService(CompetitionListAPI.class);
+        competitionListAPI.getCompetitionInfo(Constant.API_SEASON_USAGE)
+                .enqueue(new Callback<ArrayList<CompetitionInfomation>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<CompetitionInfomation>> call, Response<ArrayList<CompetitionInfomation>> response) {
+                        if (response.isSuccessful()) {
+                            ArrayList<CompetitionInfomation> competitionInfomations = response.body();
+                            competitionInfomationArrayList.addAll(competitionInfomations);
+                            competitionListAdapter.notifyDataSetChanged();
+                            Log("Ok" + competitionInfomations.size());
+                        }
+                        else {
+                            Toast.makeText(activityContainsFragment, R.string.error, Toast.LENGTH_LONG).show();
+                            try {
+                                Log(response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            //Log(t.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<CompetitionInfomation>> call, Throwable t) {
+                        Toast.makeText(activityContainsFragment, R.string.error, Toast.LENGTH_LONG).show();
+                        Log(t.getMessage());
+                    }
+                });
+    }
 }

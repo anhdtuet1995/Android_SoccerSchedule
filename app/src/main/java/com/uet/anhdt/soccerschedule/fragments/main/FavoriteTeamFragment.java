@@ -9,36 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.uet.anhdt.soccerschedule.R;
+import com.uet.anhdt.soccerschedule.fragments.BaseFragment;
 
-public class FavoriteTeamFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+public class FavoriteTeamFragment extends BaseFragment {
 
     public FavoriteTeamFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavoriteTeamFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FavoriteTeamFragment newInstance(String param1, String param2) {
+
+    public static FavoriteTeamFragment newInstance() {
         FavoriteTeamFragment fragment = new FavoriteTeamFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,10 +29,7 @@ public class FavoriteTeamFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
