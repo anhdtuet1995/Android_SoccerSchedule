@@ -32,45 +32,53 @@ public class FixtureAdapter extends FixtureBaseAdapter<FixtureToday> {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
+        ChildViewHolder childViewHolder;
         if (convertView == null) {
             LayoutInflater li = LayoutInflater.from(mContext);
             convertView = li.inflate(R.layout.item_match, parent, false);
+            childViewHolder = new ChildViewHolder();
+            childViewHolder.relativeItemHome = (RelativeLayout) convertView.findViewById(R.id.relativeItemHome);
+            childViewHolder.tvItemHomeName = (TextView) convertView.findViewById(R.id.tvItemHomeName);
+            childViewHolder.relativeItemAway = (RelativeLayout) convertView.findViewById(R.id.relativeItemAway);
+            childViewHolder.tvItemHomeAway = (TextView) convertView.findViewById(R.id.tvItemHomeAway);
+            childViewHolder.relativeItemTime = (RelativeLayout) convertView.findViewById(R.id.relativeItemTime);
+            childViewHolder.tvItemDate = (TextView) convertView.findViewById(R.id.tvItemDate);
+            childViewHolder.tvItemTime = (TextView) convertView.findViewById(R.id.tvItemTime);
+            convertView.setTag(childViewHolder);
+        }
+        else {
+            childViewHolder = (ChildViewHolder) convertView.getTag();
         }
         FixtureToday fixtureToday = (FixtureToday) getChild(groupPosition, childPosition);
 
-        RelativeLayout relativeItemHome = (RelativeLayout) convertView.findViewById(R.id.relativeItemHome);
-        TextView tvItemHomeName = (TextView) convertView.findViewById(R.id.tvItemHomeName);
-        RelativeLayout relativeItemAway = (RelativeLayout) convertView.findViewById(R.id.relativeItemAway);
-        TextView tvItemHomeAway = (TextView) convertView.findViewById(R.id.tvItemHomeAway);
-        RelativeLayout relativeItemTime = (RelativeLayout) convertView.findViewById(R.id.relativeItemTime);
-        TextView tvItemDate = (TextView) convertView.findViewById(R.id.tvItemDate);
-        TextView tvItemTime = (TextView) convertView.findViewById(R.id.tvItemTime);
-
-        tvItemHomeName.setText(fixtureToday.getHomeTeamName());
-        tvItemHomeAway.setText(fixtureToday.getAwayTeamName());
+        childViewHolder.tvItemHomeName.setText(fixtureToday.getHomeTeamName());
+        childViewHolder.tvItemHomeAway.setText(fixtureToday.getAwayTeamName());
 
         //set status for match
         if (fixtureToday.getStatus().equals(StatusFixture.FINISHED.toString())
                 || fixtureToday.getStatus().equals(StatusFixture.FT.toString())) {
             //if the match finish
-            tvItemDate.setText(FT);
+            childViewHolder.tvItemDate.setText(FT);
             String getResult = fixtureToday.getResult().getGoalsHomeTeam() + " - " + fixtureToday.getResult().getGoalsAwayTeam();
-            tvItemTime.setText(getResult);
+            childViewHolder.tvItemTime.setText(getResult);
         }
         else if (fixtureToday.getStatus().equals(StatusFixture.IN_PLAY.toString())) {
             //if the match in play
-            tvItemDate.setText(LIVE);
+            childViewHolder.tvItemDate.setText(LIVE);
             String getResult = fixtureToday.getResult().getGoalsHomeTeam() + " - " + fixtureToday.getResult().getGoalsAwayTeam();
-            tvItemTime.setText(getResult);
+            childViewHolder.tvItemTime.setText(getResult);
         }
         else {
             //if the match timed
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             DateFormat dfTime = new SimpleDateFormat("HH:mm");
             Date time = FixtureUtils.getDate(fixtureToday.getDate());
-            tvItemDate.setText(df.format(time));
-            tvItemTime.setText(dfTime.format(time));
+            childViewHolder.tvItemDate.setText(df.format(time));
+            childViewHolder.tvItemTime.setText(dfTime.format(time));
         }
+
+
+
         return convertView;
 
     }

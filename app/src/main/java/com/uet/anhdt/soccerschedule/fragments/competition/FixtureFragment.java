@@ -42,7 +42,7 @@ import retrofit2.Response;
 
 public class FixtureFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
 
-    private FloatingGroupExpandableListView expandableFixtureListMatch;
+    private ExpandableListView expandableFixtureListMatch;
 
     private SwipeRefreshLayout swipeRefreshFixtureLayout;
     private RelativeLayout relativeFixtureProgress;
@@ -111,10 +111,10 @@ public class FixtureFragment extends BaseFragment implements SwipeRefreshLayout.
         swipeRefreshFixtureLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshFixtureLayout);
         relativeFixtureProgress = (RelativeLayout) view.findViewById(R.id.relativeFixtureProgress);
 
-        expandableFixtureListMatch = (FloatingGroupExpandableListView) view.findViewById(R.id.expandableFixtureListMatch);
+        expandableFixtureListMatch = (ExpandableListView) view.findViewById(R.id.expandableFixtureListMatch);
         Log("fixtureAdapter");
-        WrapperExpandableListAdapter wrapperAdapter = new WrapperExpandableListAdapter(fixtureAdapter);
-        expandableFixtureListMatch.setAdapter(wrapperAdapter);
+        //WrapperExpandableListAdapter wrapperAdapter = new WrapperExpandableListAdapter(fixtureAdapter);
+        expandableFixtureListMatch.setAdapter(fixtureAdapter);
 
         swipeRefreshFixtureLayout.setOnRefreshListener(this);
     }

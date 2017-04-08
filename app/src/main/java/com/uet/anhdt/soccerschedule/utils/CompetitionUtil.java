@@ -12,7 +12,7 @@ public class CompetitionUtil {
         EC, PL, EL1, BL1,
         BL2, DFB, DED, FL1,
         FL2, PD, SD, SA,
-        PPL, CL;
+        PPL, CL, ELC;
 
 
         @Override
@@ -46,6 +46,8 @@ public class CompetitionUtil {
                     return "PPL";
                 case 13:
                     return "CL";
+                case 14:
+                    return "ELC";
             }
             return super.toString();
         }
@@ -61,7 +63,7 @@ public class CompetitionUtil {
         else if (league.equals(League.BL1.toString())) {
             return R.mipmap.bundesliga;
         }
-        else if (league.equals(League.PPL.toString())) {
+        else if (league.equals(League.PD.toString())) {
             return R.mipmap.laliga;
         }
         else if (league.equals(League.FL1.toString())) {
@@ -69,6 +71,30 @@ public class CompetitionUtil {
         }
         else if (league.equals((League.SA.toString()))) {
             return R.mipmap.seria;
+        }
+        else if (league.equals((League.BL2.toString()))) {
+            return R.mipmap.bl2;
+        }
+        else if (league.equals((League.DED.toString()))) {
+            return R.mipmap.ded;
+        }
+        else if (league.equals((League.DFB.toString()))) {
+            return R.mipmap.dfb;
+        }
+        else if (league.equals((League.EL1.toString()))) {
+            return R.mipmap.el1;
+        }
+        else if (league.equals((League.ELC.toString()))) {
+            return R.mipmap.elc;
+        }
+        else if (league.equals((League.FL2.toString()))) {
+            return R.mipmap.fl2;
+        }
+        else if (league.equals((League.PPL.toString()))) {
+            return R.mipmap.ppl;
+        }
+        else if (league.equals((League.SD.toString()))) {
+            return R.mipmap.sd;
         }
         else {
             return R.mipmap.ic_ball;

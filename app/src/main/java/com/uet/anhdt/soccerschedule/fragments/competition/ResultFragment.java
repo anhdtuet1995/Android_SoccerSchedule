@@ -40,7 +40,7 @@ import retrofit2.Response;
 
 public class ResultFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    private FloatingGroupExpandableListView expandableResultListMatch;
+    private ExpandableListView expandableResultListMatch;
     private SwipeRefreshLayout swipeRefreshResultLayout;
     private RelativeLayout relativeResultProgress;
 
@@ -105,9 +105,9 @@ public class ResultFragment extends BaseFragment implements SwipeRefreshLayout.O
         swipeRefreshResultLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshResultLayout);
         relativeResultProgress = (RelativeLayout) view.findViewById(R.id.relativeResultProgress);
 
-        expandableResultListMatch = (FloatingGroupExpandableListView) view.findViewById(R.id.expandableResultListMatch);
-        WrapperExpandableListAdapter wrapperAdapter = new WrapperExpandableListAdapter(fixtureAdapter);
-        expandableResultListMatch.setAdapter(wrapperAdapter);
+        expandableResultListMatch = (ExpandableListView) view.findViewById(R.id.expandableResultListMatch);
+        //WrapperExpandableListAdapter wrapperAdapter = new WrapperExpandableListAdapter(fixtureAdapter);
+        expandableResultListMatch.setAdapter(fixtureAdapter);
         expandableResultListMatch.setGroupIndicator(null);
         expandableResultListMatch.setDividerHeight(0);
 

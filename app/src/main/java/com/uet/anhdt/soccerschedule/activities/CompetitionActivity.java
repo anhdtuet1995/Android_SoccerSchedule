@@ -80,4 +80,9 @@ public class CompetitionActivity extends AppCompatActivity implements View.OnCli
     public void onBackPressed() {
         this.finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

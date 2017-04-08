@@ -75,17 +75,8 @@ public class FixtureCompetitionAdapter extends FixtureBaseAdapter<CompetitionFix
             childViewHolder.tvItemDate.setText(df.format(time));
             childViewHolder.tvItemTime.setText(dfTime.format(time));
         }
+
         return convertView;
     }
 
-
-    static class ChildViewHolder {
-        RelativeLayout relativeItemHome;
-        TextView tvItemHomeName;
-        RelativeLayout relativeItemAway;
-        TextView tvItemHomeAway;
-        RelativeLayout relativeItemTime;
-        TextView tvItemDate;
-        TextView tvItemTime;
-    }
 }

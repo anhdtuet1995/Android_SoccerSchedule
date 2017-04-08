@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.StreamEncoder;
 import com.bumptech.glide.load.resource.file.FileToStreamDecoder;
 import com.caverock.androidsvg.SVG;
+import com.squareup.leakcanary.LeakCanary;
 import com.uet.anhdt.soccerschedule.R;
 import com.uet.anhdt.soccerschedule.views.SvgDecoder;
 

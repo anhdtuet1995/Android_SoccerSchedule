@@ -115,6 +115,7 @@ public abstract class FixtureBaseAdapter<T> extends BaseExpandableListAdapter {
 
         ExpandableListView mExpand = (ExpandableListView) parent;
         mExpand.expandGroup(groupPosition);
+
         groupViewHolder.tvHeader.setText(nameOfCompetition.get(groupPosition));
         return convertView;
     }
@@ -127,4 +128,15 @@ public abstract class FixtureBaseAdapter<T> extends BaseExpandableListAdapter {
     static class GroupViewHolder {
         TextView tvHeader;
     }
+
+    static class ChildViewHolder {
+        RelativeLayout relativeItemHome;
+        TextView tvItemHomeName;
+        RelativeLayout relativeItemAway;
+        TextView tvItemHomeAway;
+        RelativeLayout relativeItemTime;
+        TextView tvItemDate;
+        TextView tvItemTime;
+    }
+
 }
