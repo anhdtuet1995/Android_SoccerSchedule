@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by anhdt on 4/3/2017.
@@ -12,7 +13,7 @@ import java.util.Date;
 public class FixtureUtils {
 
     public static DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
+    private static final String TIME_ZONE_VN = "Ho_Chi_Minh";
     public static String getNameOfCompetition(String url) {
         int id = getIdFromHref(url);
         switch (id) {
@@ -57,6 +58,7 @@ public class FixtureUtils {
     }
 
     public static Date getDate(String text) {
+        df.setTimeZone(TimeZone.getTimeZone(TIME_ZONE_VN));
         try {
 
             Date date = df.parse(text);

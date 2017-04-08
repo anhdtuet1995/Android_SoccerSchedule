@@ -2,21 +2,21 @@ package com.uet.anhdt.soccerschedule.fragments.main;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.uet.anhdt.soccerschedule.R;
 import com.uet.anhdt.soccerschedule.adapters.FixtureAdapter;
+import com.uet.anhdt.soccerschedule.adapters.FixtureBaseAdapter;
 import com.uet.anhdt.soccerschedule.fragments.BaseFragment;
-import com.uet.anhdt.soccerschedule.models.competition.CompetitionInfomation;
 import com.uet.anhdt.soccerschedule.models.fixture.FixtureRootObject;
 import com.uet.anhdt.soccerschedule.models.fixture.FixtureToday;
 import com.uet.anhdt.soccerschedule.services.FixtureTodayAPI;
@@ -33,9 +33,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsMainFragment extends BaseFragment {
+public class NewsMainFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private ExpandableListView expandableListMatch;
+    private SwipeRefreshLayout swipeRefreshNewsLayout;
+    private RelativeLayout relativeNewsProgress;
+
     private FixtureAdapter fixtureAdapter;
     private List<String> nameOfCompetition;
     private HashMap<String, List<FixtureToday>> dataOfMatch;
@@ -82,12 +85,18 @@ public class NewsMainFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //swipe to reload list
+        swipeRefreshNewsLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshNewsLayout);
+        relativeNewsProgress = (RelativeLayout) view.findViewById(R.id.relativeNewsProgress);
+
         expandableListMatch = (ExpandableListView) view.findViewById(R.id.expandableListMatch);
         DisplayMetrics metrics = new DisplayMetrics();
         activityContainsFragment.getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int width = metrics.widthPixels;
         expandableListMatch.setIndicatorBounds(width - dp2px(50), width - dp2px(10));
         expandableListMatch.setAdapter(fixtureAdapter);
+
+        swipeRefreshNewsLayout.setOnRefreshListener(this);
     }
 
     private void getMatches() {
@@ -97,6 +106,8 @@ public class NewsMainFragment extends BaseFragment {
                     @Override
                     public void onResponse(Call<FixtureRootObject> call, Response<FixtureRootObject> response) {
                         if (response.isSuccessful()) {
+                            nameOfCompetition.clear();
+                            dataOfMatch.clear();
                             FixtureRootObject fixtureRootObject = response.body();
                             ArrayList<FixtureToday> fixtureTodays = fixtureRootObject.getFixtures();
                             for (FixtureToday fixtureToday: fixtureTodays) {
@@ -120,13 +131,38 @@ public class NewsMainFragment extends BaseFragment {
                             }
                             //Log(t.getMessage());
                         }
+                        if (relativeNewsProgress != null && relativeNewsProgress.getVisibility() == View.VISIBLE) {
+                            relativeNewsProgress.setVisibility(View.GONE);
+                        }
+                        if (expandableListMatch != null && expandableListMatch.getVisibility() == View.GONE) {
+                            expandableListMatch.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<FixtureRootObject> call, Throwable t) {
                         Toast.makeText(activityContainsFragment, R.string.error, Toast.LENGTH_LONG).show();
                         Log(t.getMessage());
+
+                        if (relativeNewsProgress != null && relativeNewsProgress.getVisibility() == View.VISIBLE) {
+                            relativeNewsProgress.setVisibility(View.GONE);
+                        }
+                        if (expandableListMatch != null && expandableListMatch.getVisibility() == View.GONE) {
+                            expandableListMatch.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        relativeNewsProgress.setVisibility(View.VISIBLE);
+        expandableListMatch.setVisibility(View.GONE);
+        getMatches();
+        onComplete();
+    }
+
+    private void onComplete() {
+        swipeRefreshNewsLayout.setRefreshing(false);
     }
 }

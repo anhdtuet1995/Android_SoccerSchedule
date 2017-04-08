@@ -11,9 +11,8 @@
 
         <ImageView
             android:id="@+id/imvItemCompetitionBall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_ball"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:padding="@dimen/item_competition_ball_padding"
             android:background="@color/colorItemCompetitionBallBackground"
             />

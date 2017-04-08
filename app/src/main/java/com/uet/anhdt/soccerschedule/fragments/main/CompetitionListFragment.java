@@ -97,7 +97,11 @@ public class CompetitionListFragment extends BaseFragment {
                     public void onResponse(Call<ArrayList<CompetitionInfomation>> call, Response<ArrayList<CompetitionInfomation>> response) {
                         if (response.isSuccessful()) {
                             ArrayList<CompetitionInfomation> competitionInfomations = response.body();
-                            competitionInfomationArrayList.addAll(competitionInfomations);
+                            for (CompetitionInfomation competitionInfomation: competitionInfomations) {
+                                if (!competitionInfomation.getLeague().equals("EC")) {
+                                    competitionInfomationArrayList.add(competitionInfomation);
+                                }
+                            }
                             competitionListAdapter.notifyDataSetChanged();
                             Log("Ok" + competitionInfomations.size());
                         }

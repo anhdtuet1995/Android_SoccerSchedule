@@ -6,7 +6,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/item_competition_margin"
         android:layout_marginStart="@dimen/item_competition_margin"
         android:layout_marginEnd="@dimen/item_competition_margin"
         android:layout_marginBottom="@dimen/item_competition_margin_bottom"
@@ -20,7 +19,6 @@
             android:layout_marginStart="@dimen/item_group_match_margin_left"
             android:layout_marginEnd="@dimen/item_group_match_margin_right"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/imvItemCompetitionBall"
             android:textColor="@android:color/white"
             android:padding="@dimen/item_competition_margin"
             android:textStyle="bold"

@@ -6,7 +6,7 @@ package com.uet.anhdt.soccerschedule.utils;
 
 public enum StatusFixture {
 
-    FINISHED, IN_PLAY, TIMED;
+    FINISHED, IN_PLAY, TIMED, FT, SCHEDULED;
 
     @Override
     public String toString() {
@@ -17,6 +17,10 @@ public enum StatusFixture {
                 return "IN_PLAY";
             case 2:
                 return "TIMED";
+            case 3:
+                return "FT";
+            case 4:
+                return "SCHEDULED";
         }
         return super.toString();
     }

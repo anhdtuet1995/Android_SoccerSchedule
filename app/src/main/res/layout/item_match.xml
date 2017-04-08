@@ -11,6 +11,8 @@
         android:background="#CC009688"
         android:layout_marginStart="@dimen/item_fixture_margin"
         android:layout_marginEnd="@dimen/item_fixture_margin"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         android:weightSum="8"
         >
@@ -31,7 +33,7 @@
                 android:text="Manchester United"
                 android:textSize="@dimen/item_team_name_size"
                 android:textColor="@android:color/white"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:singleLine="true"
                 />
         </RelativeLayout>
@@ -79,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Manchester United"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:textSize="@dimen/item_team_name_size"
                 android:textColor="@android:color/white"
                 android:singleLine="true"

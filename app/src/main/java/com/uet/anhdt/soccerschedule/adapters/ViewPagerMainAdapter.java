@@ -46,6 +46,6 @@ public class ViewPagerMainAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return Constant.COMPETITION_MAIN;
         }
-        return null;
+        return super.getPageTitle(position);
     }
 }

@@ -1,11 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uet.anhdt.soccerschedule.fragments.main.NewsMainFragment">
-
+    tools:context="com.uet.anhdt.soccerschedule.fragments.competition.FixtureFragment">
     <RelativeLayout
-        android:id="@+id/relativeNewsProgress"
+        android:id="@+id/relativeFixtureProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -19,21 +18,18 @@
     </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshNewsLayout"
+        android:id="@+id/swipeRefreshFixtureLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="@dimen/fragment_news_margin_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
-
-        <ExpandableListView
-            android:id="@+id/expandableListMatch"
+        <com.diegocarloslima.fgelv.lib.FloatingGroupExpandableListView
+            android:id="@+id/expandableFixtureListMatch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
 
+            />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-
-
-</RelativeLayout>
+</FrameLayout>

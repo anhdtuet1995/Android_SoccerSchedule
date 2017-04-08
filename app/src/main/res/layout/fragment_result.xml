@@ -1,11 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uet.anhdt.soccerschedule.fragments.main.NewsMainFragment">
+    android:id="@+id/frameResultLayout"
+    tools:context="com.uet.anhdt.soccerschedule.fragments.competition.ResultFragment">
 
     <RelativeLayout
-        android:id="@+id/relativeNewsProgress"
+        android:id="@+id/relativeResultProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -19,21 +20,18 @@
     </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshNewsLayout"
+        android:id="@+id/swipeRefreshResultLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="@dimen/fragment_news_margin_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
-
-        <ExpandableListView
-            android:id="@+id/expandableListMatch"
+        <com.diegocarloslima.fgelv.lib.FloatingGroupExpandableListView
+            android:id="@+id/expandableResultListMatch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
 
+            />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-
-
-</RelativeLayout>
+</FrameLayout>

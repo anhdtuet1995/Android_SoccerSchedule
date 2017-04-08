@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background_competition"
+    tools:context="com.uet.anhdt.soccerschedule.activities.CompetitionActivity">
+
+    <RelativeLayout
+        android:id="@+id/competitionHeader"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        >
+
+        <ImageView
+            android:id="@+id/imvCompetitionBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_back"
+            />
+
+        <TextView
+            android:id="@+id/tvCompetitionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:text="Champions League 2016/17"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/competitionContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/competitionHeader">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayoutCompetitionTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            android:background="@android:color/transparent"
+            app:tabSelectedTextColor="@color/colorMainTabSelected"
+            app:tabTextColor="@color/colorMainTabUnselected"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:tabIndicatorColor="@android:color/white"
+            android:layout_marginLeft="@dimen/main_tablayout_margin"
+            android:layout_marginRight="@dimen/main_tablayout_margin"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPagerCompetitionTask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tabLayoutCompetitionTask"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
