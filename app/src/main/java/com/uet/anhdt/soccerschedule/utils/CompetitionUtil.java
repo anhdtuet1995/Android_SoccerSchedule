@@ -101,4 +101,8 @@ public class CompetitionUtil {
         }
     }
 
+
+    public static boolean checkCompetition(int id) {
+        return (id == 429 || id == 432);
+    }
 }

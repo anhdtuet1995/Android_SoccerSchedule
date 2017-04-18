@@ -23,6 +23,8 @@ public class FixtureUtils {
                 return "Championship 2016/17";
             case 428:
                 return "League One 2016/17";
+            case 429:
+                return "FA-Cup 2016/17";
             case 430:
                 return "1. Bundesliga 2016/17";
             case 431:
@@ -45,6 +47,12 @@ public class FixtureUtils {
                 return "Primeira Liga 2016/17";
             case 440:
                 return "Champions League 2016/17";
+            case 441:
+                return "Serie B";
+            case 442:
+                return "English National League";
+            case 443:
+                return "League Two";
             default:
                 return "Other";
         }

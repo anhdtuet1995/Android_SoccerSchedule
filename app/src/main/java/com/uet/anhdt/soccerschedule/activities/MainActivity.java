@@ -73,23 +73,6 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-//        ViewGroup vg = (ViewGroup) tabLayoutMainTask.getChildAt(0);
-//        int tabsCount = vg.getChildCount();
-//        for (int i = 0; i < tabsCount; i++)
-//        {
-//            int delay = (i * 150) + 750; //this is starting delay
-//            ViewGroup vgTab = (ViewGroup) vg.getChildAt(i);
-//            vgTab.setScaleX(0f);
-//            vgTab.setScaleY(0f);
-//
-//            vgTab.animate()
-//                    .scaleX(1f)
-//                    .scaleY(1f)
-//                    .setStartDelay(delay)
-//                    .setInterpolator(new FastOutSlowInInterpolator())
-//                    .setDuration(450)
-//                    .start();
-//        }
     }
 
     private void animateForTabSelected(int position) {

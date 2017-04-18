@@ -13,6 +13,7 @@ import com.uet.anhdt.soccerschedule.adapters.ViewPagerCompetitionAdapter;
 import com.uet.anhdt.soccerschedule.fragments.competition.FixtureFragment;
 import com.uet.anhdt.soccerschedule.fragments.competition.LeagueTableFragment;
 import com.uet.anhdt.soccerschedule.fragments.competition.ResultFragment;
+import com.uet.anhdt.soccerschedule.utils.CompetitionUtil;
 import com.uet.anhdt.soccerschedule.utils.Constant;
 
 public class CompetitionActivity extends AppCompatActivity implements View.OnClickListener{
@@ -61,9 +62,15 @@ public class CompetitionActivity extends AppCompatActivity implements View.OnCli
         viewPagerCompetitionAdapter = new ViewPagerCompetitionAdapter(getSupportFragmentManager());
         viewPagerCompetitionAdapter.addFrag(FixtureFragment.newInstance(competitionId, competitionCurrentMatch, competitionNumberMatches), Constant.COMPETITION_FIXTURE);
         viewPagerCompetitionAdapter.addFrag(ResultFragment.newInstance(competitionId, competitionCurrentMatch, competitionNumberMatches), Constant.COMPETITION_RESULT);
-        viewPagerCompetitionAdapter.addFrag(LeagueTableFragment.newInstance(competitionId), Constant.COMPETION_TABLE);
+        if (!CompetitionUtil.checkCompetition(competitionId)) {
+            viewPagerCompetitionAdapter.addFrag(LeagueTableFragment.newInstance(competitionId), Constant.COMPETION_TABLE);
+            viewPagerCompetitionTask.setOffscreenPageLimit(3);
+        }
+        else {
+            viewPagerCompetitionTask.setOffscreenPageLimit(2);
+        }
         viewPagerCompetitionTask.setAdapter(viewPagerCompetitionAdapter);
-        viewPagerCompetitionTask.setOffscreenPageLimit(3);
+
         tabLayoutCompetitionTask.setupWithViewPager(viewPagerCompetitionTask);
     }
 
